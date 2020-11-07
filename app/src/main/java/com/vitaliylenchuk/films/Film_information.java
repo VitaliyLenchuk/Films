@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ public class Film_information extends AppCompatActivity {
     private int mCurrentNumber;
     private ImageView mImageView;
     private EditText mEditText;
+    private Button mShareButton;
     private Film[] mFilmBank = new Film[]{
             new Film(R.string.film1_description, R.drawable.t1),
             new Film(R.string.film2_description, R.drawable.t2),
@@ -37,5 +39,16 @@ public class Film_information extends AppCompatActivity {
         mEditText = (EditText) findViewById(R.id.film_description);
         mEditText.setText(mFilmBank[mCurrentNumber].getFilm_description());
 
+        mShareButton =(Button) findViewById(R.id.share_button);
+        mShareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(Intent.EXTRA_TEXT, "Пользуйся киноприложением!");
+                i=Intent.createChooser(i, getString(R.string.share));
+                startActivity(i);
+            }
+        });
     }
 }
