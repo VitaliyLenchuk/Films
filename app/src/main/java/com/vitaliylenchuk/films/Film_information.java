@@ -20,6 +20,8 @@ public class Film_information extends AppCompatActivity {
     private Film[] mFilmBank = new Film[]{
             new Film(R.string.film1_description, R.drawable.t1),
             new Film(R.string.film2_description, R.drawable.t2),
+            new Film(R.string.film3_description, R.drawable.t3),
+            new Film(R.string.film4_description, R.drawable.t4),
     };
 
     public static Intent newIntent (Context packageContext, int mCurrentNumber) {
@@ -38,17 +40,5 @@ public class Film_information extends AppCompatActivity {
         mImageView.setImageResource(mFilmBank[mCurrentNumber].getPoster());
         mEditText = (EditText) findViewById(R.id.film_description);
         mEditText.setText(mFilmBank[mCurrentNumber].getFilm_description());
-
-        mShareButton =(Button) findViewById(R.id.share_button);
-        mShareButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("text/plain");
-                i.putExtra(Intent.EXTRA_TEXT, "Пользуйся киноприложением!");
-                i=Intent.createChooser(i, getString(R.string.share));
-                startActivity(i);
-            }
-        });
     }
 }

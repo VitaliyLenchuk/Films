@@ -9,4 +9,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
     <color name="grey">#808080</color>
+    <color name="orange">#FFA500</color>
+    <color name="indigo">#4B0082</color>
+    <color name="background">#FFE5B4</color>
+
+
+    <color name="colorPrimary">#FF6200EE</color>
+    <color name="colorPrimaryDark">#FF3700B3</color>
+    <color name="colorAccent">#FFBB86FC</color>
 </resources>

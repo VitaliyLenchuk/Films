@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Film_information">
+    tools:context=".Film_information"
+    android:background="@color/background">
 
 
 
@@ -32,14 +33,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="15dp"
+                android:enabled="false"
                 android:inputType="textMultiLine"
-                android:enabled="false"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/share_button"
-                android:layout_gravity="center"
-                android:text="Поделиться"/>
+                android:textColor="@color/indigo" />
 
         </LinearLayout>
     </ScrollView>
