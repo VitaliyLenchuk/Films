@@ -13,4 +13,20 @@
     <string name="film4_description">Преступника №1 транспортируют из Бельгии в Конго ... через Марсель. Всего несколько часов самый опасный человек в мире, надежно упакованный в скафандр и железную клетку, должен пробыть в полицейском участке комиссара Жибера.</string>
 
     <string name="share">Поделиться</string>
+    <string name="add">Добавить фильм</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Главный экран</string>
+    <string name="menu_info">О приложении</string>
+
+    <string name="hint_title">Название фильма</string>
+    <string name="hint_description">Описание фильма</string>
+
+    <string name="app_info">Приложение "Кино" версии 1.0.0. Автор: Виталий Ленчук</string>
 </resources>
