@@ -2,6 +2,7 @@ package com.vitaliylenchuk.films;
 
 import android.media.Image;
 
+import java.util.Random;
 import java.util.UUID;
 
 public class Film {
@@ -21,13 +22,23 @@ public class Film {
         mPoster = poster;
     }
 
-    public UUID getId() {
+    public int getId() {
         return mId;
     }
 
-    private UUID mId;
+    private int mId;
     private String mFilm_description;
     private int mPoster;
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
+    }
+
+    private boolean isFavourite;
 
     public String getTitle() {
         return mTitle;
@@ -40,7 +51,14 @@ public class Film {
     private String mTitle;
 
     public Film(){
-        mId = UUID.randomUUID();
+        mId = new Random().nextInt(150);
+        mPoster = R.drawable.no_photo;
+    }
+
+    public Film(FilmJson filmJson){
+        mId = filmJson.id;
+        mTitle = filmJson.title;
+        mFilm_description = filmJson.description;
         mPoster = R.drawable.no_photo;
     }
 

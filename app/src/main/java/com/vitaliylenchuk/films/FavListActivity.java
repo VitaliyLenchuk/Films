@@ -26,26 +26,26 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-public class ListActivity extends SingleFragmentActivity {
+public class FavListActivity extends SingleFragmentActivity {
     private static final String DIALOG_INFO = "DialogInfo";
 
     protected Fragment createFragment() {
-        return new FilmListFragment();
+        return new FavFilmFragment();
     }
 
-   protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       Toolbar toolbar = findViewById(R.id.toolbar);
-       setSupportActionBar(toolbar);
-       DrawerLayout drawer = findViewById(R.id.drawer_layout);
-       ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-               this, drawer, toolbar,
-               R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-       drawer.addDrawerListener(toggle);
-       toggle.syncState();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
-       NavigationView navigationView = findViewById(R.id.nav_view);
-       navigationView.setNavigationItemSelectedListener(this::onOptionsItemSelected);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this::onOptionsItemSelected);
 
     }
 
@@ -136,17 +136,11 @@ public class ListActivity extends SingleFragmentActivity {
                 FragmentManager manager = getSupportFragmentManager();
                 App_info dialog = new App_info();
                 dialog.show(manager, DIALOG_INFO);
-                 drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
 
             case R.id.nav_fav:
-             intent = new Intent (this, FavListActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
-                drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
                 return true;
 
             case R.id.nav_exit:

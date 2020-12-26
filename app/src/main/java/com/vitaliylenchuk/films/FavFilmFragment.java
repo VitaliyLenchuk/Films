@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 
-public class FilmListFragment extends Fragment {
+public class FavFilmFragment extends Fragment {
     private RecyclerView mFilmRecyclerView;
     private FilmAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -34,6 +34,8 @@ public class FilmListFragment extends Fragment {
         View view = inflater.inflate(R.layout.film_list_fragment, container,
                 false);
         mFilmRecyclerView = view.findViewById(R.id.film_recycler_view);
+        //mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        //mFilmRecyclerView.setLayoutManager(mLayoutManager);
         updateUI();
         return view;
 
@@ -49,8 +51,8 @@ public class FilmListFragment extends Fragment {
 
 
     private void updateUI(){
-        FilmLab filmLab = FilmLab.get(getContext());
-        List<Film> films = filmLab.getFilms();
+        FilmLab filmLab = FilmLab.get(getActivity());
+        List<Film> films = filmLab.getFavFilms();
         if (mAdapter == null) {
             mAdapter = new FilmAdapter(films);
             mFilmRecyclerView.setAdapter(mAdapter);
@@ -66,59 +68,40 @@ public class FilmListFragment extends Fragment {
         private TextView mTitle;
         private ImageView mPoster;
         private Film mFilm;
-        private ImageView mLike;
         public FilmHolder(LayoutInflater inflater, ViewGroup parent){
-                super(inflater.inflate(R.layout.list_item_film, parent, false));
-                mTitle = itemView.findViewById(R.id.title);
-                mPoster = itemView.findViewById(R.id.poster);
-                mButton = itemView.findViewById(R.id.details);
-                mLike = itemView.findViewById(R.id.like);
-                mLike.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (mFilm.isFavourite()) {
-                            mLike.setImageResource(R.drawable.like);
-                            mFilm.setFavourite(false);
-                        } else {
-                            mLike.setImageResource(R.drawable.liked);
-                            mFilm.setFavourite(true);
+            super(inflater.inflate(R.layout.fragment_fav_film, parent, false));
+            mTitle = itemView.findViewById(R.id.title);
+            mPoster = itemView.findViewById(R.id.poster);
+            mButton = itemView.findViewById(R.id.details);
+            mButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Animation out = AnimationUtils.loadAnimation(getContext(), R.anim.fade_out);
+                    Animation.AnimationListener animationEnlargeListener = new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            Intent intent = FilmActivity.newIntent(getActivity(), mFilm.getId());
+                            startActivity(intent);
+                            mPoster.startAnimation(AnimationUtils.loadAnimation(getContext(), android.R.anim.fade_in));
                         }
-                    }
-                });
-                mButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Animation out = AnimationUtils.loadAnimation(getContext(), R.anim.fade_out);
-                        Animation.AnimationListener animationEnlargeListener = new Animation.AnimationListener() {
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                Intent intent = FilmActivity.newIntent(getActivity(), mFilm.getId());
-                                startActivity(intent);
-                                mPoster.startAnimation(AnimationUtils.loadAnimation(getContext(), android.R.anim.fade_in));
-                            }
-                            @Override
-                            public void onAnimationRepeat(Animation animation) {
-                            }
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                        }
 
-                            @Override
-                            public void onAnimationStart(Animation animation) {
-                            }
-                        };
-                        out.setAnimationListener(animationEnlargeListener);
-                        mPoster.startAnimation(out);
-                    }
-                });
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                        }
+                    };
+                    out.setAnimationListener(animationEnlargeListener);
+                    mPoster.startAnimation(out);
+                }
+            });
 
 
         }
         public void bind(Film film){
             mFilm = film;
             mPoster.setImageResource(mFilm.getPoster());
-            if (mFilm.isFavourite()) {
-                mLike.setImageResource(R.drawable.liked);
-            } else {
-                mLike.setImageResource(R.drawable.like);
-            }
             mTitle.setText(mFilm.getTitle());
         }
     }

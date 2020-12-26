@@ -21,7 +21,7 @@ public class FilmFragment extends Fragment {
     private EditText mTitle;
     private Film mFilm;
 
-    public static FilmFragment newInstance(UUID filmId){
+    public static FilmFragment newInstance(int filmId){
         Bundle args = new Bundle();
         args.putSerializable(ARG_FILM_ID, filmId);
 
@@ -33,7 +33,7 @@ public class FilmFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID filmId = (UUID) getArguments().getSerializable(ARG_FILM_ID);
+        int filmId = (int) getArguments().getSerializable(ARG_FILM_ID);
         mFilm = FilmLab.get(getActivity()).getFilm(filmId);
     }
 

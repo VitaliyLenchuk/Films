@@ -26,7 +26,7 @@ public class FilmActivity extends AppCompatActivity {
     private static final String EXTRA_FILM_ID = "film_id";
     private static final String DIALOG_INFO = "DialogInfo";
 
-    public static Intent newIntent(Context packageContext, UUID filmId){
+    public static Intent newIntent(Context packageContext, int filmId){
         Intent intent = new Intent(packageContext, FilmActivity.class);
         intent.putExtra(EXTRA_FILM_ID, filmId);
         return intent;
@@ -57,7 +57,7 @@ public class FilmActivity extends AppCompatActivity {
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
         if (fragment == null) {
-            UUID filmId = (UUID) getIntent()
+            int filmId = (int) getIntent()
                     .getSerializableExtra(EXTRA_FILM_ID);
             fragment = FilmFragment.newInstance(filmId);
             fm.beginTransaction()
@@ -97,7 +97,16 @@ public class FilmActivity extends AppCompatActivity {
             FragmentManager manager = getSupportFragmentManager();
             App_info dialog = new App_info();
             dialog.show(manager, DIALOG_INFO);
+        } else if (id == R.id.nav_fav) {
+            Intent intent = new Intent (this, FavListActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_exit) {
+            finish();
+            System.exit(0);
         }
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

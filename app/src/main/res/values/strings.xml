@@ -24,9 +24,13 @@
 
     <string name="menu_home">Главный экран</string>
     <string name="menu_info">О приложении</string>
+    <string name="menu_fav">Избранное</string>
+    <string name="menu_exit">Выход</string>
 
     <string name="hint_title">Название фильма</string>
     <string name="hint_description">Описание фильма</string>
 
     <string name="app_info">Приложение "Кино" версии 1.0.0. Автор: Виталий Ленчук</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
